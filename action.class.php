@@ -1,23 +1,15 @@
 <?php
-
 /**
- * Handle yml files easily. 
+ * Get yml as object with a save method.
  */
 class PluginWfYml{
   public $file = null;
   public $yml = null;
   public $file_exists = false;
   public $root_path_to_key = null; // When using get/set this is included as key.
-  
-  /**
-   * 
-   * @param type $file
-   * @param type $root_path_to_key
-   */
   function __construct($file, $root_path_to_key = null) {
     $this->file = wfSettings::replaceTheme($file);
     $this->file = wfSettings::addRoot($this->file);
-    
     if($root_path_to_key){
       $this->root_path_to_key = $root_path_to_key;
     }
@@ -28,15 +20,14 @@ class PluginWfYml{
       $this->yml = wfFilesystem::loadYml($this->file);
     }
   }
-  
+  /**
+   * Get filename.
+   */
   public function getFilename(){
     return $this->file;
   }
-  
   /**
-   * 
-   * @param type $path_to_key
-   * @return type
+   * Get.
    */
   public function get($path_to_key = null){
     if($path_to_key){
@@ -54,11 +45,8 @@ class PluginWfYml{
     }
   }
   /**
-   * 
-   * @param type $value
-   * @param type $path_to_key
+   * Set.
    */
-  //public function set($value, $path_to_key = null){
   public function set($path_to_key, $value){
     if($path_to_key){
       if(!$this->root_path_to_key){
@@ -74,8 +62,6 @@ class PluginWfYml{
       }
     }
   }
-  
-  
   /**
    * This function is for set element who has id attribute without knowing the full path.
    * @param type $id
@@ -96,6 +82,23 @@ class PluginWfYml{
       }else{
         $this->set($path_to_key, $value);
       }
+    }else{
+      echo 'Could not find element with id '.$id.'.<br>';
+    }
+  }
+  /**
+   * Unset by id.
+   */
+  public function unsetById($id){
+    wfPlugin::includeonce('wf/arraysearch');
+    $wf_arraysearch = new PluginWfArraysearch();
+    $wf_arraysearch->data = array('key_name' => 'id', 'key_value' => $id, 'data' => $this->yml);
+    $data = $wf_arraysearch->get();
+    if(sizeof($data)>0){
+      $path_to_key = $data[0];
+      $path_to_key = substr($path_to_key, 1);
+      $path_to_key = str_replace('/attribute/id', '', $path_to_key);
+      $this->setUnset($path_to_key);
     }else{
       echo 'Could not find element with id '.$id.'.<br>';
     }
@@ -125,6 +128,9 @@ class PluginWfYml{
       return null;
     }
   }
+  /**
+   * Unset.
+   */
   public function setUnset($path_to_key){
     if(!$this->root_path_to_key){
       $this->yml = wfArray::setUnset($this->yml, $path_to_key);      
@@ -132,8 +138,6 @@ class PluginWfYml{
       $this->yml = wfArray::setUnset($this->yml, $this->root_path_to_key.'/'.$path_to_key);      
     }
   }
-  
-  
   /**
    * Save yml.
    */
@@ -143,16 +147,68 @@ class PluginWfYml{
     }
     wfSettings::setSettings($this->file, $this->yml);
   }
-  
+  /**
+   * Sort.
+   */
   public function sort($key, $desc = false){
     if($this->get()){
       $this->set(null, wfArray::sortMultiple($this->get(), $key, $desc));
     }
   }
-  
+  /**
+   * Dump.
+   */
   public function dump(){
     wfHelp::yml_dump($this->yml);
   }
-  
-  
+  /**
+   * Set values where tag match data key.
+   * <p>
+    Example:
+      type: span
+      attribute:
+        data-id: 'rs:id'  
+      innerHTML: 'rs:city'
+   * </p>
+   * @param array $data
+   * @param string $tag
+   * @return null
+   */
+  public function setByTag($data, $tag){
+    /**
+     * Include plugins.
+     */
+    wfPlugin::includeonce('wf/array');
+    wfPlugin::includeonce('wf/arraysearch');
+    /**
+     * Set array as object.
+     */
+    $element = new PluginWfArray($this->yml);
+    $data = new PluginWfArray($data);
+    /**
+     * Search keys.
+     */
+    $search = new PluginWfArraysearch(true);
+    $search->data = array('key_name' => '', 'key_value' => '', 'data' => $element->get());
+    $keys = $search->get();
+    /**
+     * Loop keys.
+     */
+    foreach ($keys as $key => $value) {
+      $str = $element->get(substr($value, 1));
+      /**
+       * If key match.
+       */
+      if(substr($str, 0, strlen($tag)+1) == $tag.':'){
+        $tag_key = substr($str, strlen($tag)+1);
+        /**
+         * If key exist in data.
+         */
+        if(array_key_exists($tag_key, $data->array)){
+          $this->set(substr($value, 1), $data->get($tag_key));
+        }
+      }
+    }
+    return null;
+  }
 }
