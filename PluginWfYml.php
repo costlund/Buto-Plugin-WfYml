@@ -185,7 +185,12 @@ class PluginWfYml{
     /**
      * Set array as object.
      */
-    $element = new PluginWfArray($this->yml);
+    if(!$this->root_path_to_key){
+      $element = new PluginWfArray($this->yml);
+    }else{
+      $element = new PluginWfArray($this->yml);
+      $element = new PluginWfArray($element->get($this->root_path_to_key));
+    }
     $data = new PluginWfArray($data);
     /**
      * Search keys.
