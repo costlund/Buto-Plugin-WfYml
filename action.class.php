@@ -163,18 +163,20 @@ class PluginWfYml{
   }
   /**
    * Set values where tag match data key.
-   * <p>
-    Example:
-      type: span
-      attribute:
-        data-id: 'rs:id'  
-      innerHTML: 'rs:city'
-   * </p>
-   * @param array $data
-   * @param string $tag
+   * Example of usage is to replace innerHTML keys in an array where content is rs:name and data has a key with this id.
+   * <p>Example of element where tags are id and city and these keys exist in data array:</p>
+   * <pre>
+   * type: span
+   * attribute:
+   * __data-id: 'rs:id'  
+   * innerHTML: 'rs:city'
+   * </pre>
+   * @param array $data Array with matching keys.
+   * @param string $tag Text before colon.
+   * @param boolean $clear_nomatch If clear where key not exist in data.
    * @return null
    */
-  public function setByTag($data, $tag){
+  public function setByTag($data, $tag = 'rs', $clear_nomatch = false){
     /**
      * Include plugins.
      */
@@ -206,6 +208,8 @@ class PluginWfYml{
          */
         if(array_key_exists($tag_key, $data->array)){
           $this->set(substr($value, 1), $data->get($tag_key));
+        }elseif($clear_nomatch){
+          $this->set(substr($value, 1), null);
         }
       }
     }
