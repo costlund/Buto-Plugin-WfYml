@@ -191,6 +191,13 @@ class PluginWfYml{
       $element = new PluginWfArray($this->yml);
       $element = new PluginWfArray($element->get($this->root_path_to_key));
     }
+    /**
+     */
+    if(is_null($data)){
+      return null;
+    }
+    /**
+     */
     $data = new PluginWfArray($data);
     /**
      * Search keys.
