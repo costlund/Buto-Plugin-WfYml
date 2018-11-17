@@ -162,6 +162,19 @@ class PluginWfYml{
     wfHelp::yml_dump($this->yml);
   }
   /**
+   * Check if array is associative.
+   * @param array $data
+   * @return boolean
+   */
+  private function isArrayAssociative($data){
+    foreach ($data as $key => $value) {
+      if(!is_numeric($key)){
+        return true;
+      }
+    }
+    return false;
+  }
+  /**
    * Set values where tag match data key.
    * Example of usage is to replace innerHTML keys in an array where content is rs:name and data has a key with this id.
    * <p>Example of element where tags are id and city and these keys exist in data array:</p>
@@ -177,6 +190,12 @@ class PluginWfYml{
    * @return null
    */
   public function setByTag($data, $tag = 'rs', $clear_nomatch = false){
+    /**
+     * Check if array is associative.
+     */
+    if(!$this->isArrayAssociative($data)){
+      throw new Exception("PluginWfYml says: Array in method setByTag is not associative."); 
+    }
     /**
      * Include plugins.
      */
