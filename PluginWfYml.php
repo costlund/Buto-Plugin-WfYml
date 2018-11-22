@@ -193,7 +193,7 @@ class PluginWfYml{
     /**
      * Check if array is associative.
      */
-    if(!$this->isArrayAssociative($data)){
+    if(sizeof($data) > 0 && !$this->isArrayAssociative($data)){
       throw new Exception("PluginWfYml says: Array in method setByTag is not associative."); 
     }
     /**
