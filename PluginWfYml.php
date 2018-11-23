@@ -191,6 +191,11 @@ class PluginWfYml{
    */
   public function setByTag($data, $tag = 'rs', $clear_nomatch = false){
     /**
+     */
+    if(is_null($data)){
+      $data = array();
+    }
+    /**
      * Check if array is associative.
      */
     if(sizeof($data) > 0 && !$this->isArrayAssociative($data)){
@@ -209,11 +214,6 @@ class PluginWfYml{
     }else{
       $element = new PluginWfArray($this->yml);
       $element = new PluginWfArray($element->get($this->root_path_to_key));
-    }
-    /**
-     */
-    if(is_null($data)){
-      return null;
     }
     /**
      */
