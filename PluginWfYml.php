@@ -50,7 +50,11 @@ class PluginWfYml{
   public function set($path_to_key, $value){
     if($path_to_key){
       if(!$this->root_path_to_key){
-        $this->yml = wfArray::set($this->yml, $path_to_key, $value);
+        if($path_to_key === true){
+          $this->yml[] = $value;
+        }else{
+          $this->yml = wfArray::set($this->yml, $path_to_key, $value);
+        }
       }else{
         $this->yml = wfArray::set($this->yml, $this->root_path_to_key.'/'.$path_to_key, $value);
       }
