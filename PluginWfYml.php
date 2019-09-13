@@ -7,7 +7,7 @@ class PluginWfYml{
   public $yml = null;
   public $file_exists = false;
   public $root_path_to_key = null; // When using get/set this is included as key.
-  function __construct($file, $root_path_to_key = null) {
+  function __construct($file, $root_path_to_key = null, $replace = array()) {
     $this->file = wfSettings::replaceTheme($file);
     $this->file = wfSettings::addRoot($this->file);
     if($root_path_to_key){
@@ -17,7 +17,7 @@ class PluginWfYml{
       $this->yml = array();  
     }else{
       $this->file_exists = true;
-      $this->yml = wfFilesystem::loadYml($this->file);
+      $this->yml = wfFilesystem::loadYml($this->file, true, $replace);
     }
   }
   /**
