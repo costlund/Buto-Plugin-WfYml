@@ -1,16 +1,21 @@
-version: '1.1'
+version: '1.2'
 history:
+  '1.2':
+    date: '2019-10-09'
+    description: Method clearByTags in PluginWfYml.
   '1.1':
+    date: '2018-11-23'
     description: Bug when data was null in method setByTag.
   '1.0':
+    date: '2018-01-05'
     description: First version.
 plugin:
   -
     name: wf/array
-    version: '1.0'
+    version: '1.0.1'
   -
     name: wf/arraysearch
-    version: '1.0'
+    version: '1.0.1'
 sys:
   -
     name: mercury
