@@ -250,4 +250,18 @@ class PluginWfYml{
     }
     return null;
   }
+  /**
+   * Clear tags.
+   * @param Array $tags Or string
+   */
+  public function clearByTags($tags){
+    if(!is_array($tags)){
+      $this->setByTag(array(), $tags, true);
+    }else{
+      foreach ($tags as $key => $value) {
+        $this->setByTag(array(), $value, true);
+      }
+    }
+    return null;
+  }
 }
