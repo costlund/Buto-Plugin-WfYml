@@ -254,7 +254,7 @@ class PluginWfYml{
    * Clear tags.
    * @param Array $tags Or string
    */
-  public function clearByTags($tags){
+  public function clearByTags($tags = 'rs'){
     if(!is_array($tags)){
       $this->setByTag(array(), $tags, true);
     }else{
