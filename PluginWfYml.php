@@ -112,6 +112,7 @@ class PluginWfYml{
    * Hole element or specific value if key is set.
    * @param string $id
    * @param string $key
+   * @return PluginWfArray
    */
   public function getById($id, $key = null){
     wfPlugin::includeonce('wf/arraysearch');
