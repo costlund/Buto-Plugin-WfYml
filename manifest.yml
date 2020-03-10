@@ -1,13 +1,16 @@
-version: '1.2'
+version: '1.2.0'
 history:
-  '1.2':
+  '1.2.0':
     date: '2019-10-09'
+    title: clearByTags
     description: Method clearByTags in PluginWfYml.
-  '1.1':
+  '1.1.0':
     date: '2018-11-23'
+    title: setByTag
     description: Bug when data was null in method setByTag.
-  '1.0':
+  '1.0.0':
     date: '2018-01-05'
+    title: First version
     description: First version.
 plugin:
   -
