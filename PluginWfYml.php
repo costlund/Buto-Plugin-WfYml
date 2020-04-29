@@ -238,11 +238,16 @@ class PluginWfYml{
        * If key match.
        */
       if(substr($str, 0, strlen($tag)+1) == $tag.':'){
+        /**
+         * 
+         */
         $tag_key = substr($str, strlen($tag)+1);
         /**
          * If key exist in data.
          */
-        if(array_key_exists($tag_key, $data->array)){
+        if(wfArray::isKey($data->get(), $tag_key)){
+          $this->set(substr($value, 1), $data->get($tag_key));
+        }elseif(array_key_exists($tag_key, $data->array)){
           $this->set(substr($value, 1), $data->get($tag_key));
         }elseif($clear_nomatch){
           $this->set(substr($value, 1), null);

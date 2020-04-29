@@ -1,5 +1,9 @@
-version: '1.2.1'
+version: '1.2.2'
 history:
+  '1.2.2':
+    date: '2020-04-29'
+    title: setByTag
+    description: 'Method setByTag can handle nestled array values.'
   '1.2.1':
     date: '2020-03-10'
     title: Documentation
