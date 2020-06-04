@@ -1,32 +1,32 @@
-version: '1.2.2'
+version: 1.2.2
 history:
-  '1.2.2':
+  1.2.2:
     date: '2020-04-29'
     title: setByTag
     description: 'Method setByTag can handle nestled array values.'
-  '1.2.1':
+  1.2.1:
     date: '2020-03-10'
     title: Documentation
-    description: Code documentation.
-  '1.2.0':
+    description: 'Code documentation.'
+  1.2.0:
     date: '2019-10-09'
     title: clearByTags
-    description: Method clearByTags in PluginWfYml.
-  '1.1.0':
+    description: 'Method clearByTags in PluginWfYml.'
+  1.1.0:
     date: '2018-11-23'
     title: setByTag
-    description: Bug when data was null in method setByTag.
-  '1.0.0':
+    description: 'Bug when data was null in method setByTag.'
+  1.0.0:
     date: '2018-01-05'
-    title: First version
-    description: First version.
+    title: 'First version'
+    description: 'First version.'
 plugin:
   -
     name: wf/array
-    version: '1.0.1'
+    version: 1.2.0
   -
     name: wf/arraysearch
-    version: '1.0.1'
+    version: 1.0.1
 sys:
   -
     name: mercury
@@ -34,4 +34,3 @@ sys:
       - '1.0'
 php:
   - 7.0.10
- 
