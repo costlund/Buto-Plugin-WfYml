@@ -148,7 +148,7 @@ class PluginWfYml{
    */
   public function save(){
     if(!file_exists($this->file)){
-      file_put_contents($this->file , "{}");
+      wfFilesystem::createFile($this->file, "{}");
     }
     wfSettings::setSettings($this->file, $this->yml);
   }
