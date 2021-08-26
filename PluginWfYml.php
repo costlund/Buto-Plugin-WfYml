@@ -18,6 +18,12 @@ class PluginWfYml{
     }else{
       $this->file_exists = true;
       $this->yml = wfFilesystem::loadYml($this->file, true, $replace);
+      if(!is_array($this->yml)){
+        /**
+         * If yml file only contains "''" we has to set it to an empty array.
+         */
+        $this->yml = array();  
+      }
     }
   }
   /**
