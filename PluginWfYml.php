@@ -161,9 +161,19 @@ class PluginWfYml{
   /**
    * Sort.
    */
-  public function sort($key, $desc = false){
-    if($this->get()){
-      $this->set(null, wfArray::sortMultiple($this->get(), $key, $desc));
+  public function sort($key = null, $desc = false){
+    if($key){
+      if($this->get()){
+        $this->set(null, wfArray::sortMultiple($this->get(), $key, $desc));
+      }
+    }else{
+      $data = $this->yml;
+      if(!$desc){
+        ksort($data);
+      }else{
+        krsort($data);
+      }
+      $this->yml = $data;
     }
   }
   /**

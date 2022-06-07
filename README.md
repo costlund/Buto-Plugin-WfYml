@@ -36,3 +36,10 @@ $element->setByTag(array('minutes' => 33, 'calc_date_to' => array('minutes' => 4
   type: span
   innerHTML: 44
 ```
+
+### sort
+Sort data.
+
+Params.
+- key (optional, default null), if sort by a key.
+- desc (optional, default false) if sort descending.
