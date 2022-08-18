@@ -78,7 +78,7 @@ class PluginWfYml{
    * @param type $key
    * @param type $value
    */
-  public function setById($id, $key = null, $value){
+  public function setById($id, $key = null, $value = null){
     wfPlugin::includeonce('wf/arraysearch');
     $wf_arraysearch = new PluginWfArraysearch();
     $wf_arraysearch->data = array('key_name' => 'id', 'key_value' => $id, 'data' => $this->yml);
