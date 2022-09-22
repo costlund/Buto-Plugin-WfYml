@@ -286,4 +286,12 @@ class PluginWfYml{
     }
     return null;
   }
+  /**
+   * Merge data.
+   * @param array $value
+   */
+  public function merge($value){
+    $this->yml = array_merge($this->yml, $value);
+    return null;
+  }
 }

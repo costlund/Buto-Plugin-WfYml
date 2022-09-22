@@ -43,3 +43,9 @@ Sort data.
 Params.
 - key (optional, default null), if sort by a key.
 - desc (optional, default false) if sort descending.
+
+### merge
+Merge data form array.
+```
+$obj->merge(array('number' => 1234));
+```
