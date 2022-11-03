@@ -8,6 +8,14 @@ class PluginWfYml{
   public $file_exists = false;
   public $root_path_to_key = null; // When using get/set this is included as key.
   function __construct($file, $root_path_to_key = null, $replace = array()) {
+    /**
+     * 
+     */
+    wfPlugin::includeonce('wf/array');
+    wfPlugin::includeonce('wf/arraysearch');
+    /**
+     * 
+     */
     $this->file = wfSettings::replaceTheme($file);
     $this->file = wfSettings::addRoot($this->file);
     if($root_path_to_key){

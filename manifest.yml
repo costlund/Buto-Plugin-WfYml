@@ -1,5 +1,9 @@
-version: 1.5.0
+version: 1.5.1
 history:
+  1.5.1:
+    date: '2022-11-03'
+    title: Construct
+    description: 'Including plugin wf/array and wf/arraysearch in construct method.'
   1.5.0:
     date: '2022-09-22'
     title: Merge
