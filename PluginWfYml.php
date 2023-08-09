@@ -93,7 +93,7 @@ class PluginWfYml{
     $data = $wf_arraysearch->get();
     if(sizeof($data)>0){
       $path_to_key = $data[0];
-      $path_to_key = wfSettings::sub_str($path_to_key, 1);
+      $path_to_key = wfPhpfunc::substr($path_to_key, 1);
       $path_to_key = str_replace('/attribute/id', '', $path_to_key);
       if($key){
         $this->set($path_to_key.'/'.$key, $value);
@@ -114,7 +114,7 @@ class PluginWfYml{
     $data = $wf_arraysearch->get();
     if(sizeof($data)>0){
       $path_to_key = $data[0];
-      $path_to_key = wfSettings::sub_str($path_to_key, 1);
+      $path_to_key = wfPhpfunc::substr($path_to_key, 1);
       $path_to_key = str_replace('/attribute/id', '', $path_to_key);
       $this->setUnset($path_to_key);
     }else{
@@ -136,7 +136,7 @@ class PluginWfYml{
     $data = $wf_arraysearch->get();
     if(sizeof($data)>0){
       $path_to_key = $data[0];
-      $path_to_key = wfSettings::sub_str($path_to_key, 1);
+      $path_to_key = wfPhpfunc::substr($path_to_key, 1);
       $path_to_key = str_replace('/attribute/id', '', $path_to_key);
       if($key){
         return new PluginWfArray($this->get($path_to_key.'/'.$key));
@@ -257,24 +257,24 @@ class PluginWfYml{
      * Loop keys.
      */
     foreach ($keys as $key => $value) {
-      $str = $element->get(wfSettings::sub_str($value, 1));
+      $str = $element->get(wfPhpfunc::substr($value, 1));
       /**
        * If key match.
        */
-      if(wfSettings::sub_str($str, 0, strlen($tag)+1) == $tag.':'){
+      if(wfPhpfunc::substr($str, 0, strlen($tag)+1) == $tag.':'){
         /**
          * 
          */
-        $tag_key = wfSettings::sub_str($str, strlen($tag)+1);
+        $tag_key = wfPhpfunc::substr($str, strlen($tag)+1);
         /**
          * If key exist in data.
          */
         if(wfArray::isKey($data->get(), $tag_key)){
-          $this->set(wfSettings::sub_str($value, 1), $data->get($tag_key));
+          $this->set(wfPhpfunc::substr($value, 1), $data->get($tag_key));
         }elseif(array_key_exists($tag_key, $data->array)){
-          $this->set(wfSettings::sub_str($value, 1), $data->get($tag_key));
+          $this->set(wfPhpfunc::substr($value, 1), $data->get($tag_key));
         }elseif($clear_nomatch){
-          $this->set(wfSettings::sub_str($value, 1), null);
+          $this->set(wfPhpfunc::substr($value, 1), null);
         }
       }
     }
