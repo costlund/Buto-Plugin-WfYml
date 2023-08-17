@@ -94,7 +94,7 @@ class PluginWfYml{
     if(sizeof($data)>0){
       $path_to_key = $data[0];
       $path_to_key = wfPhpfunc::substr($path_to_key, 1);
-      $path_to_key = str_replace('/attribute/id', '', $path_to_key);
+      $path_to_key = wfPhpfunc::str_replace('/attribute/id', '', $path_to_key);
       if($key){
         $this->set($path_to_key.'/'.$key, $value);
       }else{
@@ -115,7 +115,7 @@ class PluginWfYml{
     if(sizeof($data)>0){
       $path_to_key = $data[0];
       $path_to_key = wfPhpfunc::substr($path_to_key, 1);
-      $path_to_key = str_replace('/attribute/id', '', $path_to_key);
+      $path_to_key = wfPhpfunc::str_replace('/attribute/id', '', $path_to_key);
       $this->setUnset($path_to_key);
     }else{
       echo 'Could not find element with id '.$id.'.<br>';
@@ -137,7 +137,7 @@ class PluginWfYml{
     if(sizeof($data)>0){
       $path_to_key = $data[0];
       $path_to_key = wfPhpfunc::substr($path_to_key, 1);
-      $path_to_key = str_replace('/attribute/id', '', $path_to_key);
+      $path_to_key = wfPhpfunc::str_replace('/attribute/id', '', $path_to_key);
       if($key){
         return new PluginWfArray($this->get($path_to_key.'/'.$key));
       }else{
@@ -261,11 +261,11 @@ class PluginWfYml{
       /**
        * If key match.
        */
-      if(wfPhpfunc::substr($str, 0, strlen($tag)+1) == $tag.':'){
+      if(wfPhpfunc::substr($str, 0, wfPhpfunc::strlen($tag)+1) == $tag.':'){
         /**
          * 
          */
-        $tag_key = wfPhpfunc::substr($str, strlen($tag)+1);
+        $tag_key = wfPhpfunc::substr($str, wfPhpfunc::strlen($tag)+1);
         /**
          * If key exist in data.
          */
