@@ -59,6 +59,14 @@ class PluginWfYml{
     }
   }
   /**
+   * getString
+   */
+  public function getString($path_to_key = null){
+    $data = $this->get($path_to_key);
+    $data = sfYaml::dump($data, 99);
+    return $data;
+  }
+  /**
    * Set.
    */
   public function set($path_to_key, $value){
