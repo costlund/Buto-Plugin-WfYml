@@ -1,5 +1,9 @@
-version: 1.9.0
+version: 1.9.1
 history:
+  1.9.1:
+    date: '2024-06-24'
+    title: Exception
+    description: 'Handle exeption if param data is not an array in method setByTag.'
   1.9.0:
     date: '2024-05-23'
     title: getString

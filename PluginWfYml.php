@@ -233,6 +233,12 @@ class PluginWfYml{
       $data = array();
     }
     /**
+     * Check if data is an array.
+     */
+    if(!is_array($data)){
+      throw new Exception(__CLASS__.'::'.__FUNCTION__." says: Param data is not an array ($data)!");
+    }
+    /**
      * Check if array is associative.
      */
     if(sizeof($data) > 0 && !$this->isArrayAssociative($data)){
