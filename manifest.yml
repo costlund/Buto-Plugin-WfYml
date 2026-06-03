@@ -1,5 +1,9 @@
-version: 1.9.1
+version: 1.10.0
 history:
+  1.10.0:
+    date: '2026-06-02'
+    title: setByTag
+    description: 'Handle null values in method setByTag.'
   1.9.1:
     date: '2024-06-24'
     title: Exception
