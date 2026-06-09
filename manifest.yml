@@ -1,5 +1,9 @@
-version: 1.10.0
+version: 1.10.1
 history:
+  1.10.1:
+    date: '2026-06-09'
+    title: Construct method
+    description: 'Using wfSettings::replaceDir instead of wfSettings::replaceTheme in construct method.'
   1.10.0:
     date: '2026-06-02'
     title: setByTag

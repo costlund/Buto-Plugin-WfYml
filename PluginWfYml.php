@@ -16,7 +16,7 @@ class PluginWfYml{
     /**
      * 
      */
-    $this->file = wfSettings::replaceTheme($file);
+    $this->file = wfSettings::replaceDir($file);
     $this->file = wfSettings::addRoot($this->file);
     if($root_path_to_key){
       $this->root_path_to_key = $root_path_to_key;
